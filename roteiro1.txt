@@ -1,0 +1,18 @@
+DIOGO OLIVEIRA NEISS
+SEMINARIOS II QUARTA FEIRA 10H50
+649651
+
+
+1.	a) A saída produzida não é sempre igual. Provavelmente isso se dá por talvez o SO fornecer as threads ao OpemMP, na ordem que estiverem disponiveis.
+
+	b) Meu computador possui um intel 8250u, com 4 núcleos. O código criava 8 threads, portando devem ser 4 físicas e 4 virtuais.
+
+2	   O padrão de programação fork-join consiste em pequenas funcoes paralelas, que executam suas tarefas e, após terminarem, a execução volta para a main. O código é puramente sequencial até a chamada da funcao, onde passa a ser paralelo, e em seguida volta a ser sequencial, até a próxima funcao paralela.
+
+3.	a) Alguns valores faltaram provavelmente pelo timing do join, que rejuntou as threads antes de terminar a execução propriamente dita.
+	b)Declarando-se o int i antes, cada thread paralela apenas modifica seus valores, sem alocar estaticamente sizeof(int). Com o int i dentro do paralelo, a cada thread o i estará numa região diferente da memória. O i declarado antes faz com que seja compartilhado entre as threads, enquanto o declarado dentro da região paralela permanece privado naquela thread especifica.
+4.	a) Provavelmente saidas como aquela são criadas por que não foi feito o controle da "sequência" das threads, o opemMP faz isso do "jeito dele". Dessa forma, fica a cargo do SO e compilador atribuirem qual thread vai pra cada seção específica.
+	b) A iteração acrescentada ficou na thread 0.
+	c) Creio que o openMP distribui frações das iterações entre as threads. Como eu tenho 8 threads, ele deve ter distribuído n/8 para cada thread. Como várias saidas ficaram faltando, nao pude confirmar minha tese 100%.
+	disso.
+	d) Tentei fazer no código um set dentro de um for com set num threads e um for interno paralelo, com incrementação de MAX_THREADS, porém o programa só ficou printando thread 0, 1 e 2.. Segundo o comando cat /proc/sys/kernel/threads-max, o limite de threads do meu computador é aprox 61000, entao creio que qualquer valor proximo da metade disso seja o máximo prático, já que o SO e seus programas usam threads existentes.
