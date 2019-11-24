@@ -1,0 +1,21 @@
+Iniciando mais uma iteração do programa, visando comparar resultados.
+Tamanho do array de elementos aleatorios: [1000000]
+Melhor tempo: 0.063580	Threads: 12	Nested: 5	Stop: 10
+Iniciando mais uma iteração do programa, visando comparar resultados.
+Tamanho do array de elementos aleatorios: [100000]
+Melhor tempo: 0.007579	Threads: 12	Nested: 2	Stop: 10
+Iniciando mais uma iteração do programa, visando comparar resultados.
+Tamanho do array de elementos aleatorios: [10000]
+Melhor tempo: 0.000869	Threads: 3	Nested: 10	Stop: 10
+Iniciando mais uma iteração do programa, visando comparar resultados.
+Tamanho do array de elementos aleatorios: [1000]
+Melhor tempo: 0.000105	Threads: 6	Nested: 10	Stop: 10
+Iniciando mais uma iteração do programa, visando comparar resultados.
+Tamanho do array de elementos aleatorios: [100]
+Melhor tempo: 0.000018	Threads: 1	Nested: 10	Stop: 10
+Iniciando mais uma iteração do programa, visando comparar resultados.
+Tamanho do array de elementos aleatorios: [10]
+Melhor tempo: 0.000006	Threads: 1	Nested: 5	Stop: 10
+Iniciando mais uma iteração do programa, visando comparar resultados.
+Tamanho do array de elementos aleatorios: [100000]
+Melhor tempo: 0.008410	Threads: 12	Nested: 2	Stop: 10

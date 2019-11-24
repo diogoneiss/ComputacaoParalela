@@ -1,8 +1,13 @@
+/**
+ * Mergesort paralelo
+ * @author Diogo Neiss
+ * @date nov 2019
+ */ 
 #include <stdio.h>
 #include <omp.h>
 #include <time.h>
 #include <stdlib.h>
-#define SIZE_ARRAY 10
+#define SIZE_ARRAY 100000
 
 int main(int argc, char **argv);
 void preencherArray(int *arr);
@@ -15,9 +20,11 @@ int IsSorted(int *array, int size);
 int main(int argc, char **argv)
 {
 
+	//arquivos com os resultados e logs
 	FILE *arquivoLog = fopen("logMergesort.txt", "a");
 	FILE *resultadosComparacao = fopen("resultadosMergesort.txt", "a");
 	fprintf(resultadosComparacao, "Iniciando mais uma iteração do programa, visando comparar resultados.\nTamanho do array de elementos aleatorios: [%d]\n", SIZE_ARRAY);
+
 	int *arr = (int *)malloc(SIZE_ARRAY * sizeof(int));
 
 	//int arr[] = {6, 7 , 1 , 5 , 6 ,11, 3, 14, 9, 5};
@@ -26,11 +33,13 @@ int main(int argc, char **argv)
 	int threads;
 	int nested;
 
+	//array para armazenar melhores execuções
 	int melhoresExecucoes[3];
 	double melhorTempo = 100;
 
-	//for(stop = 1000; stop > 0; stop /= 2)
-	for (nested = 10; nested > 0; nested /= 2){
+	//for variando os diferentes valores de nested e threads
+	for (nested = 10; nested > 0; nested /= 2)
+	{
 		for (threads = 100; threads > 0; threads /= 2)
 		{
 			preencherArray(arr);
@@ -38,13 +47,14 @@ int main(int argc, char **argv)
 			omp_set_nested(nested);
 
 			start = omp_get_wtime();
-			#pragma omp parallel
-			#pragma omp single
+#pragma omp parallel
+#pragma omp single
 			mergesort_parallel(arr, SIZE_ARRAY, threads, stop);
-			//
+
 			end = omp_get_wtime();
 
 			exec = end - start;
+			//armazenamento do melhor tempo
 			if (exec < melhorTempo)
 			{
 				melhorTempo = exec;
@@ -66,11 +76,11 @@ int main(int argc, char **argv)
 	printf("Melhor tempo: %lf\tThreads: %d\tNested: %d\tStop: %d\n", melhorTempo, melhoresExecucoes[0], melhoresExecucoes[1], melhoresExecucoes[2]);
 	fprintf(resultadosComparacao, "Melhor tempo: %lf\tThreads: %d\tNested: %d\tStop: %d\n", melhorTempo, melhoresExecucoes[0], melhoresExecucoes[1], melhoresExecucoes[2]);
 
-	
 	fclose(resultadosComparacao);
 	fclose(arquivoLog);
 	return 0;
 }
+//funcao parar preencher o array com valores aleatorios
 void preencherArray(int *arr)
 {
 	//semente aleatoria
@@ -106,19 +116,17 @@ void mergesort_parallel(int arr[], int size, int threads, int stop)
 	int mid;
 	if (size > 1)
 	{
-		//uso esse contador de threads para decidir se ser� paralelizado ou nao
+		//uso esse contador para decidir se ser� paralelizado ou nao
 		if (stop > 1)
 		{
-			
-
-				mid = size / 2;
+			mid = size / 2;
 #pragma omp task
-				mergesort_parallel(arr, mid, threads, stop / 2);
+			mergesort_parallel(arr, mid, threads, stop / 2);
 #pragma omp task
-				mergesort_parallel(arr + mid, size - mid, threads, stop - stop / 2);
+			mergesort_parallel(arr + mid, size - mid, threads, stop - stop / 2);
+			//eseperar as tasks serem concluidas para continuar em frente
 #pragma omp taskwait
 			Merge(arr, size);
-			
 		}
 		else
 			mergesort_serial(arr, size);

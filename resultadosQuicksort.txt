@@ -1,0 +1,21 @@
+Dados para um array de tamanho 1000000:
+Melhor tempo: [0.049489]
+Melhores parâmetros: Threads: [1000]	Nested: [50]	Stop: [1000]
+Dados para um array de tamanho 100000:
+Melhor tempo: [0.004413]
+Melhores parâmetros: Threads: [7]	Nested: [6]	Stop: [500]
+Dados para um array de tamanho 10000:
+Melhor tempo: [0.000606]
+Melhores parâmetros: Threads: [7]	Nested: [1]	Stop: [7]
+Dados para um array de tamanho 1000:
+Melhor tempo: [0.000061]
+Melhores parâmetros: Threads: [7]	Nested: [6]	Stop: [31]
+Dados para um array de tamanho 100:
+Melhor tempo: [0.000006]
+Melhores parâmetros: Threads: [1]	Nested: [3]	Stop: [1]
+Dados para um array de tamanho 10:
+Melhor tempo: [0.000001]
+Melhores parâmetros: Threads: [3]	Nested: [12]	Stop: [1]
+Dados para um array de tamanho 10000:
+Melhor tempo: [0.000519]
+Melhores parâmetros: Threads: [3]	Nested: [1]	Stop: [500]

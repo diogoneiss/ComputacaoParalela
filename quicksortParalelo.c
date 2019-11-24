@@ -1,4 +1,8 @@
-
+/**
+ * Quicksort paralelo
+ * @author Diogo Neiss
+ * @date nov 2019
+ */ 
 #include <stdio.h>
 #include <omp.h>
 #include <time.h>
@@ -14,7 +18,7 @@ void quickParallel(int *a, long left, long right, int stop);
 void quickSequential(int *a, long left, long right);
 int IsSort(int *array);
 
-const size_t size = 10;
+const size_t size = 10000;
 
 int main(int argc, char **argv)
 {
@@ -36,8 +40,10 @@ int main(int argc, char **argv)
 
     for (numThreads = 1000; numThreads > 0; numThreads = numThreads / 2)
     {
-        for(stop = 1000; stop > 0; stop = stop/2){
-            for(nestedNum = 100; nestedNum > 0; nestedNum = nestedNum /2){
+        for (stop = 1000; stop > 0; stop = stop / 2)
+        {
+            for (nestedNum = 100; nestedNum > 0; nestedNum = nestedNum / 2)
+            {
                 exec = parametrosParalelizacao(array, numThreads, nestedNum, stop);
                 fprintf(arquivoLog, "\tTempo: [%lf]\t Threads: [%d]\tNested: [%d] \t Stop: [%d]\n", exec, numThreads, nestedNum, stop);
                 if (exec < melhorTempoExec)

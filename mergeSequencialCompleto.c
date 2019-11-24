@@ -1,12 +1,18 @@
+/**
+ * Mergesort sequencial
+ * @author Diogo Neiss
+ * @date nov 2019
+ */ 
 #include <stdio.h>
 #include <omp.h>
 #include <time.h>
 #include <stdlib.h>
-#define SIZE_ARRAY 3000000
+#define SIZE_ARRAY 10000
+//tamanho do array
 void mergesort(int arr[], int size);
 void Merge(int vec[], int vecSize);
 int IsSorted(int *array, int size);
-//tamanho do array
+
 
 int main(int argc, char** argv) {
 
@@ -31,7 +37,7 @@ int main(int argc, char** argv) {
 	if(IsSorted(arr, SIZE_ARRAY) == 1)
 		printf("Resultado: ordenado!\n");
 	else
-		printf("Resultado: NÃO ordenado!\n");
+		printf("Resultado: Nï¿½O ordenado!\n");
 
 	return 0;
 }

@@ -1,8 +1,8 @@
-/*
-
-   Thanks to Prof. Henrique Cota!
-
-*/
+/**
+ * Quicksort sequencial
+ * @author Diogo Neiss
+ * @date nov 2019
+ */ 
 
 #include <stdio.h>
 #include <omp.h>
@@ -16,7 +16,7 @@ int IsSort(int *array, int size);
 
 int main(int argc, char **argv)
 {
-    int size = 1000000, i, *array;
+    int size = 10000, i, *array;
 
     array = malloc(size * sizeof(int));
     srand(time(NULL));
